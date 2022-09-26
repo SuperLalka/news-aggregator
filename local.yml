@@ -1,0 +1,30 @@
+version: '3'
+
+volumes:
+  postgres_data: {}
+  postgres_data_backups: {}
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+#    image_name: aggregator
+    restart: always
+#    depends_on:
+#      - postgres
+    ports:
+      - "80:80"
+    env_file:
+      - ./.env/.local/.app
+#      - ./.env/.local/.postgres
+#    command: /start
+
+#  postgres:
+#    image: postgres
+#    restart: always
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#      - postgres_data_backups:/backups
+##    env_file:
+##      - ./.env/.local/.postgres
